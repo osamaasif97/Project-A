@@ -138,7 +138,7 @@ const Home = () => {
                     }
                     } className="filter" />
                 <div className="PageSelector">
-                    <span style={{ fontWeight: "bold", paddingRight: '4px' }}> Contacts per Page: </span>
+                    <span className="ContactNo"> Contacts per Page: </span>
                     <input placeholder="5"
                         onChange={(e) => {
                             setItemsPerPage(e.target.value)
@@ -247,7 +247,7 @@ const Home = () => {
     return <>
         <div className="navbar">
             <a href="/home">Home</a>
-            <span onClick={() => createModal()}>Create contact</span>
+            <span className="spans" onClick={() => createModal()}>Create contact</span>
             <a href='/weather'>Weather</a>
             <a href='/chat'>Chat</a>
             <CreateModal showModal={showModal === "create"} setShowModal={setShowModal} />
