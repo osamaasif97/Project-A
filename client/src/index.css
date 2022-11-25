@@ -246,13 +246,28 @@ input[type=text] {
   cursor: pointer;
 }
 
+.ContactNo {
+  font-weight: bold;
+  padding-right: 4px;
+  color: black
+}
+
+.spans {
+  cursor: pointer;
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
 .navbar {
   overflow: hidden;
   background-color: #333;
 }
 
-.navbar a,
-span {
+.navbar a {
   cursor: pointer;
   float: left;
   font-size: 16px;
