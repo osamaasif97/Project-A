@@ -1,0 +1,555 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Bordered form */
+form {
+  /* width: 40%; */
+  margin: 2px 0;
+  /* align-content: center; */
+}
+
+/* Full-width inputs */
+input[type=email],
+input[type=password],
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.filter {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.page-selector {
+  width: 10%;
+  padding: 8px;
+  margin: 8px 2px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.PageSelector {
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.container {
+  border: 3px solid #f1f1f1;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  width: 400px;
+  border-radius: 30px;
+  background-color: white;
+
+}
+
+
+.Header {
+  color: grey;
+  text-align: center;
+}
+
+/* Set a style for all buttons */
+.button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  border-radius: 30px;
+  position: relative;
+  text-align: center;
+  left: 25%;
+}
+
+/* Add a hover effect for buttons */
+.button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.delete {
+  color: white;
+  text-align: center;
+  background-color: #f44336;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  border-radius: 30px;
+  position: relative;
+  left: 25%;
+}
+
+.delete:hover {
+  opacity: 0.8;
+}
+
+.deleteContact {
+  color: white;
+  font-weight: bold;
+  background-color: #f44336;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  float: right;
+  position: relative;
+  top: -58px;
+}
+
+.list {
+
+  list-style-type: upper-roman;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.listx {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.listx td,
+.listx th,
+.listx input {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.listx tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.listx tr:hover {
+  background-color: #ddd;
+}
+
+.listx th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Add padding to containers */
+
+.eye {
+  cursor: pointer;
+  position: inherit;
+  right: 0.8cm;
+  bottom: 3.1cm;
+}
+
+.eye2 {
+  cursor: pointer;
+  position: inherit;
+  right: 0.8cm;
+  bottom: 4.6cm;
+}
+
+.welcome {
+  color: #fff;
+  position: absolute;
+  top: 30px;
+  left: 16px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: all 0.2s ease;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 21px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav span {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 21px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 30px;
+  margin-left: 50px;
+}
+
+.user {
+  position: absolute;
+  top: 1%;
+  right: 3%;
+  color: #fff;
+
+  cursor: pointer;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a,
+span {
+  cursor: pointer;
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar b {
+  cursor: pointer;
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  /* Important for vertical align on mobile phones */
+  margin: 0;
+  /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+/* .navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: red;
+} */
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+/* .dropdown-content a:hover {
+  background-color: #ddd;
+} */
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.logout {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 21px;
+  color: #818181;
+  background-color: #111;
+  display: block;
+  transition: 0.3s;
+  border: #111;
+  cursor: pointer;
+}
+
+.logout a:hover {
+  color: #f1f1f1;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+}
+
+.test {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* .modal {
+  position: relative;
+  background: #fff;
+  padding: 80px 20px 20px;
+  overflow: hidden;
+  height: 300px;
+  width: 600px;
+  border-radius: 10px;
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
+} */
+
+.modals {
+  cursor: pointer;
+}
+
+.closemodalbutton {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  z-index: 10;
+}
+
+.links {
+  text-align: center;
+  text-decoration: rgb(145, 135, 135);
+  float: right;
+  font-weight: bold;
+
+}
+
+/* Weather */
+.weather-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Stick No Bills', sans-serif;
+  background: #222;
+  background-image: url("https://source.unsplash.com/1920x1080/?pakistan-landscape/");
+  font-size: 120%;
+}
+
+.weather-widget {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  height: 94.6vh;
+  margin: 0;
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: 120%;
+  background: #29272a;
+  background-image: url('https://www.w3schools.com/howto/img_band_la.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+
+.card {
+  background: #000000d0;
+  color: white;
+  padding: 2ex;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 420px;
+  margin: 1em;
+
+}
+
+.card-widget {
+  /* background: #000000d0; */
+  color: white;
+  padding: 2ex;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 420px;
+  margin: 1em;
+  position: absolute;
+  /* top */
+}
+
+.card h1.temp {
+  margin: 0;
+  margin-bottom: 0.4em;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button {
+  margin: 0.5em;
+  border-radius: 50%;
+  border: none;
+  height: 2.5em;
+  width: 2.5em;
+  outline: none;
+  background: #7c7c7c2b;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.search-button:hover {
+  background: #7c7c7c6b;
+}
+
+input.search-bar {
+  border: none;
+  outline: none;
+  padding: 0.4em 1em;
+  border-radius: 24px;
+  background: #7c7c7c2b;
+  color: white;
+  font-family: inherit;
+  font-size: 100%;
+  width: calc(100% - 100px);
+}
+
+.description {
+  text-transform: capitalize;
+  margin-left: 8px;
+
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.feels-like {
+  display: flex;
+  float: right;
+  margin: 10px;
+}
+
+.humidity {
+  padding: 3px;
+
+}
+
+.weather.loading {
+  visibility: hidden;
+  max-height: 20px;
+  position: relative;
+}
+
+.weather.loading:after {
+  visibility: visible;
+  content: "Loading...";
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 20px
+}
+
+
+
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  .modalfade {
+    transition: none
+  }
+
+  .modalfade:not(.show) {
+    opacity: 0
+  }
+
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+
+  span.psw {
+    display: block;
+    float: none;
+  }
+
+  .cancelbtn {
+    width: 100%;
+  }
+}
