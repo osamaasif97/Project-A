@@ -87,8 +87,8 @@ const Home = () => {
     function Datatable({ data = [] }) {
 
         const dataS = data.sort((a, b) => {
-            if (a.name > b.name) return 1
-            else if (a.name < b.name) return -1
+            if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+            else if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
             else return 0
         })
 
@@ -116,14 +116,14 @@ const Home = () => {
         const sorting = () => {
             if (sort === "ASC") {
                 const sorted = displayItems.sort((a, b) =>
-                    a.name > b.name ? 1 : -1
+                    a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
                 )
                 setDataR(sorted)
                 setSort("DES")
             }
             else if (sort === "DES") {
                 const sorted = [...displayItems].sort((a, b) =>
-                    a.name < b.name ? 1 : -1
+                    a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1
                 )
                 setDataR(sorted)
                 setSort("ASC")
