@@ -55,6 +55,8 @@ input[type=text] {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
+  right: -75px;
 }
 
 .container {
@@ -127,7 +129,7 @@ input[type=text] {
   border-radius: 1rem;
   float: right;
   position: relative;
-  top: -58px;
+  top: -109px;
 }
 
 .list {

@@ -1,5 +1,5 @@
-
-import React, { useState } from 'react'
+// import env from "react-dotenv"
+import React, { useEffect, useState } from 'react'
 import jwt from 'jsonwebtoken'
 import { useHistory } from 'react-router-dom'
 import { Icon } from 'react-icons-kit'
@@ -10,18 +10,23 @@ import { faSignOut, } from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert'
 import Weather from './Weather-widget'
 import logoutUser from './functions/logoutUser'
+import Authenticator from './functions/Authenticator'
 
 const Home = () => {
     const [icon, setIcon] = useState(user)
     const history = useHistory()
     const token = sessionStorage.getItem('token')
+    const user1 = jwt.decode(token)
+    useEffect(() => {
+        Authenticator(user1)
+    })
+    if (!user1) {
+        sessionStorage.removeItem('token')
+        history.replace('/login')
+    }
 
     if (token) {
-        const user1 = jwt.decode(token)
-        if (!user1) {
-            sessionStorage.removeItem('token')
-            history.replace('/login')
-        }
+
         return <div >
             <div className='navbar'>
                 <a href="/home" >Home</a>
@@ -73,16 +78,6 @@ const Home = () => {
                 {/* <img src='https://www.w3schools.com/howto/img_band_la.jpg' style={{ width: '100%', height: '40%', zIndex: -1 }}></img> */}
             </section>
         </div >
-    }
-    if (!token) {
-        return <div>
-            <h1>Invalid token</h1>
-            Redirecting....
-            {setTimeout(function () {
-                window.location.href = "/login"
-            }, 3000)}
-        </div>
-
     }
 }
 

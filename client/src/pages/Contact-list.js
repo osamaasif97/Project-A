@@ -13,6 +13,7 @@ import addressBook from '../pages/functions/addressBook'
 import swal from 'sweetalert'
 import ReactPaginate from 'react-paginate'
 import './pagination.css'
+import Authenticator from './functions/Authenticator'
 
 const Home = () => {
     const history = useHistory()
@@ -22,20 +23,6 @@ const Home = () => {
     const [ModalData, setModalData] = useState()
     const testData = useRef()
 
-    const [isChecked, setIsChecked] = useState([])
-
-    const handleCheck = (e) => {
-        const { value, checked } = e.target
-        if (checked) {
-            setIsChecked([...isChecked, value])
-        } else {
-            setIsChecked(isChecked.filter((e) => e !== value))
-        }
-    }
-
-    const alldelete = async => {
-        deleteContact(isChecked)
-    }
 
     const updateModal = async (dat) => {
         setModalData(dat)
@@ -76,13 +63,9 @@ const Home = () => {
     }
     const user = jwt.decode(token)
 
-    if (!token) {
-        return <div>
-            <h1>Invalid token</h1>
-            Redirecting....
-            {setTimeout(history.replace('/login'), 3000)}
-        </div>
-    }
+    useEffect(() => {
+        Authenticator(user)
+    })
 
     function Datatable({ data = [] }) {
 
@@ -113,6 +96,21 @@ const Home = () => {
             setPageNumber(data.selected)
         }
 
+        const [isChecked, setIsChecked] = useState([])
+        const alldelete = async => {
+            deleteContact(isChecked)
+        }
+
+        const handleCheck = (e) => {
+            const { value, checked } = e.target
+            console.log(value, checked)
+            if (checked) {
+                setIsChecked([...isChecked, value])
+            } else {
+                setIsChecked(isChecked.filter((e) => e !== value))
+            }
+        }
+
         const sorting = () => {
             if (sort === "ASC") {
                 const sorted = displayItems.sort((a, b) =>
@@ -132,6 +130,7 @@ const Home = () => {
 
         return (
             <div>
+                <button className="deleteContact" onClick={alldelete}>Delete</button>
                 <input value={query} placeholder="Filter"
                     onChange={(e) => {
                         setQuery(e.target.value)
@@ -159,40 +158,9 @@ const Home = () => {
                         <th>Number</th>
                         <th>Edit</th>
                     </tr>
-                    {query ? dataR.filter(dat => dat.name.toLowerCase().includes(query) ||
+                    {displayItems.filter(dat => dat.name.toLowerCase().includes(query) ||
                         dat.number.includes(query))
                         .map((dat, index) => (
-                            <tr key={index} >
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        value={dat._id}
-                                        checked={dat.isChecked}
-                                        onChange={(e) => handleCheck(e)}
-                                    />
-                                </td>
-                                <td> {dat.name}</td>
-                                <td> {dat.number}</td>
-                                <td>
-                                    <a onClick={() => {
-                                        updateModal(dat)
-                                    }} className="modals" style={{ color: "limegreen", paddingLeft: "5px", paddingRight: "10px" }}
-                                        value={dat._id}>
-                                        <FontAwesomeIcon icon={faPenToSquare} fixedWidth />
-                                    </a>
-                                    <a></a>
-                                    <a
-                                        onClick={() => {
-                                            deleteModal(dat._id)
-                                        }} className="modals" style={{ color: "red" }}
-
-                                    >
-                                        <FontAwesomeIcon icon={faTrashCan} fixedWidth />
-                                    </a>
-                                </td>
-                            </tr>
-                        )
-                        ) : displayItems.map((dat, index) => (
                             <tr key={index} >
                                 <td>
                                     <input
@@ -267,7 +235,6 @@ const Home = () => {
         </div>
         <div style={{ padding: "20px" }}>
             <h1 >Welcome {user.name}</h1>
-            <button className="deleteContact" onClick={alldelete}>Delete</button>
             {data1 !== undefined ?
                 data1.length !== 0 ?
                     <div >
