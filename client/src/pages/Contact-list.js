@@ -26,7 +26,6 @@ const Home = () => {
 
     const updateModal = async (dat) => {
         setModalData(dat)
-        // console.log(dat)
         testData.current = dat
         setShowModal("update")
     }
@@ -103,7 +102,6 @@ const Home = () => {
 
         const handleCheck = (e) => {
             const { value, checked } = e.target
-            console.log(value, checked)
             if (checked) {
                 setIsChecked([...isChecked, value])
             } else {
@@ -173,20 +171,20 @@ const Home = () => {
                                 <td> {dat.name}</td>
                                 <td> {dat.number}</td>
                                 <td>
-                                    <a onClick={() => {
+                                    <span onClick={() => {
                                         updateModal(dat)
                                     }} className="modals" style={{ color: "limegreen", paddingLeft: "5px", paddingRight: "10px" }}
                                         value={dat._id}>
                                         <FontAwesomeIcon icon={faPenToSquare} fixedWidth />
-                                    </a>
-                                    <a
+                                    </span>
+                                    <span
                                         onClick={() => {
                                             deleteModal(dat._id)
                                         }} className="modals" style={{ color: "red" }}
 
                                     >
                                         <FontAwesomeIcon icon={faTrashCan} fixedWidth />
-                                    </a>
+                                    </span>
                                 </td>
                             </tr>
                         )
