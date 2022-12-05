@@ -51,7 +51,7 @@ const login = async (req, res) => {
                     id: user._id,
                     name: user.name,
                     email: user.email
-                }, process.env.JWT_SECRET)
+                }, process.env.JWT_SECRET, { expiresIn: '2h' })
                 return res.json({ status: 'ok', token: token, user: user.name })
             }
         })
@@ -96,8 +96,12 @@ const deleteUser = async (req, res) => {
 }
 
 const changePassword = async (req, res) => {
-    const { newPassword, password } = req.body
+    const { password, newPassword, confirmNewPassword } = req.body
     const token = req.headers['x-access-token']
+
+    if (newPassword !== confirmNewPassword) {
+        return res.json({ status: 'error', error: 'Password doesnt Match' })
+    }
 
     if (!newPassword || !password || typeof newPassword !== 'string' || typeof password !== 'string') {
         return res.json({ status: 'error', error: 'Invalid password' })
@@ -136,6 +140,7 @@ const changePassword = async (req, res) => {
         })
 
     } catch (error) {
+        return res.status(404).json({ status: 'error', error: ':))))' })
         //     if (token === 'null') {
         //         res.status(404).json({ message: 'Authorization failed, Invalid token' })
         //     }
@@ -156,11 +161,29 @@ const getUser = async (req, res) => {
 
 }
 
+const changeName = async (req, res) => {
+    const { name } = req.body
+    const token = req.headers['x-access-token']
+
+    try {
+        const user = jwt.verify(token, process.env.JWT_SECRET)
+        const _id = user.id
+        user1 = await User.findById({ _id })
+
+    } catch (error) {
+        //     if (token === 'null') {
+        //         res.status(404).json({ message: 'Authorization failed, Invalid token' })
+        //     }
+        //     else { return res.status(404).json({ status: 'error', error: ':))))' }) }
+    }
+}
+
 module.exports = {
     register,
     login,
     logout,
     changePassword,
     deleteUser,
-    getUser
+    getUser,
+    changeName
 }

@@ -65,12 +65,12 @@ export const UpdateModal = ({ showModal, setShowModal, DATA }) => {
                 }} />
             <h2 className='Header'>Contact Editor</h2>
             <input
-                value={name}
+                value={name} className="Input"
                 onChange={(e) => setName(e.target.value)}
                 type="text"
             /><br />
             <input
-                value={number}
+                value={number} className="Input"
                 onChange={(e) => setNumber(e.target.value)}
                 type="text"
             /><br />

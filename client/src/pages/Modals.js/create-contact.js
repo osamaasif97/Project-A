@@ -65,12 +65,12 @@ export const CreateModal = ({ showModal, setShowModal, }) => {
             <form onSubmit={(e) => createContact(e.preventDefault())} >
                 <h1 className="Header" >Create new contact</h1>
                 <input
-                    value={name}
+                    value={name} className="Input"
                     onChange={(e) => setName(e.target.value)}
                     type="text" placeholder="Name"
                 /><br />
                 <input
-                    value={number}
+                    value={number} className="Input"
                     onChange={(e) => setNumber(e.target.value)}
                     type="text" placeholder="Number"
                 /><br />

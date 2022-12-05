@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar span {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar span.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.sidebar span:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+.editContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    position: relative;
+    left: 194px;
+}
+
+.ModalHeader {
+    position: relative;
+    left: -163px;
+}
+
+.ModalHeaderD {
+    position: relative;
+    left: -142px;
+}
+
+.input {
+    width: 200px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+    left: -120px;
+    top: -9px;
+}
+
+.save {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 30px;
+    position: relative;
+    text-align: center;
+    left: 25%;
+}
+
+.eyes {
+    scale: 0.9;
+    position: relative;
+    top: -47px;
+    left: -39px;
+    color: grey;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar span {
+        float: left;
+    }
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (width:1920px) {
+    .editContainer {
+        position: relative;
+        left: -46px;
+    }
+}

@@ -2,21 +2,23 @@
 import React, { useEffect, useState } from 'react'
 import jwt from 'jsonwebtoken'
 import { useHistory } from 'react-router-dom'
-import { Icon } from 'react-icons-kit'
-import { user } from 'react-icons-kit/ikons/user'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan, faPenToSquare } from '@fortawesome/free-regular-svg-icons'
 import { faSignOut, } from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert'
-import Weather from './Weather/Weather-widget'
-import logoutUser from './functions/logoutUser'
-import Authenticator from './functions/Authenticator'
+import logoutUser from '../functions/logoutUser'
+import Authenticator from '../functions/Authenticator'
+import NameEditor from '../Modals.js/NameEditor'
+import PasswordEditor from '../Modals.js/changePassword'
+import DeleteProfile from '../Modals.js/deleteProfile'
 
-const Home = () => {
-    const [icon, setIcon] = useState(user)
+import './editProfile.css'
+
+const editProfile = () => {
+    const [showModal, setShowModal] = useState(" ")
     const history = useHistory()
     const token = sessionStorage.getItem('token')
     const user1 = jwt.decode(token)
+
     useEffect(() => {
         Authenticator(user1)
     })
@@ -40,16 +42,7 @@ const Home = () => {
                 </div>
                 <a href='/weather'>Weather</a>
                 <a href='/chat'>Chat</a>
-            </div>
-
-            <div id='sidebar' className='sidenav'>
-                <span className="closebtn" onClick={() => {
-                    document.getElementById('sidebar').style.width = "0"
-                }}>&times;</span>
-                <a href="/edit-profile">
-                    <FontAwesomeIcon icon={faPenToSquare} style={{ marginRight: '10px' }} />
-                    Profile</a>
-                <span onClick={() => {
+                <b onClick={() => {
                     swal({
                         title: "Logging Out ",
                         text: "Success!!",
@@ -59,22 +52,22 @@ const Home = () => {
                         showConfirmButton: false,
                         button: "Continue",
                     }).then(() => logoutUser())
-                }}>
-                    <FontAwesomeIcon icon={faSignOut} style={{ marginRight: '5px' }} />
-                    Logout
-                </span>
+                }} className="signout">
+                    <FontAwesomeIcon icon={faSignOut} />
+                </b>
             </div>
-            <span className='user' onClick={() => {
-                document.getElementById('sidebar').style.width = "250px"
-            }}><Icon icon={icon} /></span>
 
-            <section>
-                <h1 className='welcome' >Welcome {user1.name}</h1>
-                <Weather />
-                {/* <img src='https://www.w3schools.com/howto/img_band_la.jpg' style={{ width: '100%', height: '40%', zIndex: -1 }}></img> */}
-            </section>
+            <div className='sidebar'>
+                <span onClick={() => setShowModal("name")}>Name</span>
+                <span onClick={() => setShowModal("password")}>Password</span>
+                <span onClick={() => setShowModal("delete")}>Delete Profile</span>
+            </div>
+
+            <NameEditor showModal={showModal === "name"} />
+            <PasswordEditor showModal={showModal === "password"} />
+            <DeleteProfile showModal={showModal === "delete"} />
         </div >
     }
 }
 
-export default Home
+export default editProfile

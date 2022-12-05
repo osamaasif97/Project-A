@@ -1,7 +1,7 @@
 import swal from 'sweetalert'
 
 async function deleteContact(id) {
-    if (id.length >= 1) {
+    if (id.length > 0) {
         const result = await fetch('http://localhost:4000/contact-list/bulkDelete', {
             method: 'DELETE',
             headers: {
