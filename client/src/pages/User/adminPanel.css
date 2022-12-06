@@ -1,0 +1,85 @@
+.lista {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 79%;
+    position: relative;
+    left: 178px;
+}
+
+.lista td,
+.lista th,
+.lista input {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.lista tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.lista tr:hover {
+    background-color: #ddd;
+}
+
+.lista th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4f5254;
+    color: white;
+}
+
+.sidebara {
+    margin: 0;
+    padding: 0;
+    width: 160px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    top: 5%;
+    z-index: -1;
+}
+
+.sidebara span {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebara span.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.sidebara span:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+.back {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* background-color: rgb(0, 0, 0); */
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.editorInput {
+    width: 100%;
+    margin: 8px 0 10px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.Headera {
+    color: grey;
+    text-align: center;
+    padding: 1rem;
+}

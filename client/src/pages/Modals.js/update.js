@@ -70,7 +70,7 @@ export const UpdateModal = ({ showModal, setShowModal, DATA }) => {
                 type="text"
             /><br />
             <input
-                value={number} className="Input"
+                className="Input" placeholder={number}
                 onChange={(e) => setNumber(e.target.value)}
                 type="text"
             /><br />

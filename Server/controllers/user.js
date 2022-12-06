@@ -1,7 +1,7 @@
 const User = require('../model/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-
+const mongoose = require('mongoose')
 
 const register = async (req, res) => {
     const { email, name, password: plainTextPassword } = req.body
@@ -150,7 +150,6 @@ const changePassword = async (req, res) => {
 
 const getUser = async (req, res) => {
     const id = req.params.userId
-
     try {
         const user = await User.findById(id)
         if (user) user.password = null
@@ -162,19 +161,66 @@ const getUser = async (req, res) => {
 }
 
 const changeName = async (req, res) => {
-    const { name } = req.body
+    const { name, id } = req.body
+    const token = req.headers['x-access-token']
+
+    try {
+        user = await User.findByIdAndUpdate(id, {
+            name: name
+        })
+
+        res.status(200).json({ status: 'ok', data: user })
+
+    } catch (error) {
+        console.log('here');
+        if (token === 'null') {
+            res.status(404).json({ message: 'Authorization failed, Invalid token' })
+        }
+        //     else { return res.status(404).json({ status: 'error', error: ':))))' }) }
+        return res.status(404).json({ status: 'error', error: error })
+    }
+}
+
+const adminPanel = async (req, res) => {
     const token = req.headers['x-access-token']
 
     try {
         const user = jwt.verify(token, process.env.JWT_SECRET)
-        const _id = user.id
-        user1 = await User.findById({ _id })
-
+        const data = await User.findById(user.id)
+        if (data.power === 1 || data.power === 2) {
+            const masterData = await User.find()
+            // masterData.map(a => {
+            //     console.log(a.name);
+            // })
+            res.status(200).json({ message: 'ok', data: masterData, user: user })
+        } else {
+            res.status(500).json({ message: 'not ok' })
+        }
     } catch (error) {
-        //     if (token === 'null') {
-        //         res.status(404).json({ message: 'Authorization failed, Invalid token' })
-        //     }
-        //     else { return res.status(404).json({ status: 'error', error: ':))))' }) }
+        res.status(500).json({ error: error, message: 'ERROR' })
+    }
+}
+
+const adminPower = async (req, res) => {
+    const { checkID } = req.body
+    const { ID, checked } = checkID
+    const token = req.headers['x-access-token']
+    let user
+    try {
+        if (ID !== undefined) {
+            if (checked === true) {
+                user = await User.findByIdAndUpdate(ID, {
+                    power: 1
+                })
+            } else if (checked === false) {
+                user = await User.findByIdAndUpdate(ID, {
+                    power: 0
+                })
+            }
+            res.status(200).json({ status: 'ok', data: user })
+        }
+    } catch (error) {
+        res.status(500).json({ error: error, message: 'ERROR' })
     }
 }
 
@@ -185,5 +231,7 @@ module.exports = {
     changePassword,
     deleteUser,
     getUser,
-    changeName
+    changeName,
+    adminPanel,
+    adminPower
 }

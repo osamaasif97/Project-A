@@ -5,21 +5,30 @@ import { useHistory } from 'react-router-dom'
 import { Icon } from 'react-icons-kit'
 import { user } from 'react-icons-kit/ikons/user'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan, faPenToSquare } from '@fortawesome/free-regular-svg-icons'
+import { faPenToSquare, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faSignOut, } from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert'
 import Weather from './Weather/Weather-widget'
 import logoutUser from './functions/logoutUser'
 import Authenticator from './functions/Authenticator'
+import getUser from './functions/getUser'
 
 const Home = () => {
     const [icon, setIcon] = useState(user)
     const history = useHistory()
     const token = sessionStorage.getItem('token')
     const user1 = jwt.decode(token)
+    const [data, setData] = useState()
+
+    async function Power() {
+        const power = await getUser(user1.id)
+        setData(power)
+    }
+
     useEffect(() => {
         Authenticator(user1)
-    })
+        Power()
+    }, [])
     if (!user1) {
         sessionStorage.removeItem('token')
         history.replace('/login')
@@ -63,6 +72,11 @@ const Home = () => {
                     <FontAwesomeIcon icon={faSignOut} style={{ marginRight: '5px' }} />
                     Logout
                 </span>
+                {data ? data.power >= 1 ? <a href='/masterAdmin'>
+                    <FontAwesomeIcon icon={faUser} style={{ marginRight: '10px' }} />
+                    Admin Panel</a>
+                    : <div></div>
+                    : <div></div>}
             </div>
             <span className='user' onClick={() => {
                 document.getElementById('sidebar').style.width = "250px"

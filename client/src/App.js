@@ -8,6 +8,7 @@ import ContactListCreate from './pages/Contacts/Create-contact'
 import Weather from './pages/Weather/Weather'
 import Chat from './pages/Chat/chat.js'
 import editProfile from './pages/User/editProfile'
+import adminPanel from './pages/User/adminPanel'
 
 const App = () => {
     return <div>
@@ -21,6 +22,7 @@ const App = () => {
             <Route path='/weather' exact component={Weather} />
             <Route path='/chat' exact component={Chat} />
             <Route path='/edit-profile' exact component={editProfile} />
+            <Route path='/masterAdmin' exact component={adminPanel} />
         </BrowserRouter>
     </div>
 }

@@ -1,5 +1,5 @@
-async function NameChange(name) {
-
+async function NameChange(name, id) {
+    console.log(name, id);
     const result = await fetch(`http://localhost:4000/change-name`, {
         method: 'POST',
         headers: {
@@ -7,13 +7,13 @@ async function NameChange(name) {
             'x-access-token': sessionStorage.getItem('token')
         },
         body: JSON.stringify({
-            name
+            name,
+            id
         })
     }).then((req) => req.json())
     if (result.status === 'ok') {
-        // console.log(result.data)
+        console.log(result.data)
         return result.data
-
     }
 }
 

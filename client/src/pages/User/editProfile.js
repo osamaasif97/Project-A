@@ -63,7 +63,7 @@ const editProfile = () => {
                 <span onClick={() => setShowModal("delete")}>Delete Profile</span>
             </div>
 
-            <NameEditor showModal={showModal === "name"} />
+            <NameEditor showModal={showModal === "name"} id={user1.id} oldname={user1.name} />
             <PasswordEditor showModal={showModal === "password"} />
             <DeleteProfile showModal={showModal === "delete"} />
         </div >

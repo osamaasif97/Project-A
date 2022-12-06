@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
         required: [true, 'Please provide password'],
         unique: true,
         minlength: [5, 'Password too short']
+    },
+    power: {
+        type: Number,
+        default: '0'
     }
 },
     { collection: 'users' }

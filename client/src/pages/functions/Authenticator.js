@@ -8,9 +8,9 @@ async function Authenticator(token) {
         return <div>
             <h1>Invalid token</h1>
             Redirecting....
-            setTimeout(function () {
+            {setTimeout(function () {
                 window.location.href = "/login"
-            }, 3000)
+            }, 3000)}
         </div>
     }
 }
