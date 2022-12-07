@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import jwt from 'jsonwebtoken'
 import { useHistory } from 'react-router-dom'
 import swal from 'sweetalert'
+import Authenticator from "../functions/Authenticator";
 
 const App = () => {
     const history = useHistory()
     const token = sessionStorage.getItem('token')
     const [name, setName] = useState('')
     const [number, setNumber] = useState()
+
+    useEffect(() => {
+        Authenticator(token)
+    })
+
 
     async function createContact(event) {
         event.preventDefault()

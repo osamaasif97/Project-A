@@ -224,6 +224,24 @@ const adminPower = async (req, res) => {
     }
 }
 
+const MasterProfileDelete = async (req, res) => {
+    const token = req.headers['x-access-token']
+    const { profileID } = req.body
+    try {
+        user = jwt.verify(token, process.env.JWT_SECRET)
+        const { id } = user
+        const data = await User.findById(id)
+        if (data.power >= 1) {
+            const result = await User.findByIdAndDelete(profileID)
+            if (result) {
+                res.status(200).json({ status: 'ok', message: 'User Deleted!' })
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     register,
     login,
@@ -233,5 +251,6 @@ module.exports = {
     getUser,
     changeName,
     adminPanel,
-    adminPower
+    adminPower,
+    MasterProfileDelete
 }

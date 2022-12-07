@@ -26,7 +26,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        Authenticator(user1)
+        Authenticator(token)
         Power()
     }, [])
     if (!user1) {

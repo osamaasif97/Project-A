@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import jwt from 'jsonwebtoken'
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-regular-svg-icons'
@@ -13,6 +12,7 @@ import addressBook from '../functions/addressBook'
 import swal from 'sweetalert'
 import ReactPaginate from 'react-paginate'
 import './pagination.css'
+import jwt from 'jsonwebtoken'
 import Authenticator from '../functions/Authenticator'
 
 const Home = () => {
@@ -60,10 +60,10 @@ const Home = () => {
         data1 = Array.isArray(data) ? data.map(({ _id,
             name, number }) => { return { _id, name, number } }) : []
     }
-    const user = jwt.decode(token)
 
+    const user = jwt.decode(token)
     useEffect(() => {
-        Authenticator(user)
+        Authenticator(token)
     })
 
     function Datatable({ data = [] }) {

@@ -3,7 +3,8 @@ import DeleteProfile from '../functions/deleteProfile'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
 
-const deleteProfile = ({ showModal }) => {
+const AdminProfileDelete = ({ showModal }) => {
+    console.log('here');
     const [type, setType] = useState('password')
     const [icon, setIcon] = useState(faEyeSlash)
     const [password, setPassword] = useState('')
@@ -36,4 +37,4 @@ const deleteProfile = ({ showModal }) => {
     }</>
 }
 
-export default deleteProfile
+export default AdminProfileDelete

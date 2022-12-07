@@ -53,7 +53,7 @@ const ProfileEditor = ({ showModal, setShowModal, id }) => {
         } else {
             setTimeout(function () {
                 window.location.href = "/masterAdmin"
-            }, 1000)
+            }, 500)
         }
     }
 
