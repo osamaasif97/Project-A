@@ -8,7 +8,6 @@ async function addressBook() {
     if (result.status === 'ok') {
         // console.log(result.data)
         return result.data
-
     }
 }
 

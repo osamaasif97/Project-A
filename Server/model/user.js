@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema({
     power: {
         type: Number,
         default: '0'
+    },
+    contactCount: {
+        type: Number,
+        default: '0'
     }
 },
     { collection: 'users' }

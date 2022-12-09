@@ -1,9 +1,7 @@
 .lista {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 79%;
-    position: relative;
-    left: 178px;
+    width: 83%;
 }
 
 .lista td,
@@ -37,8 +35,8 @@
     position: fixed;
     height: 100%;
     overflow: auto;
-    top: 5%;
-    z-index: -1;
+    top: 46px;
+    /* z-index: -1; */
 }
 
 .sidebara span {

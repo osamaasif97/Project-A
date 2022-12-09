@@ -1,7 +1,6 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import Power from '../functions/admin'
 import NameChange from '../functions/changeName'
 import swal from 'sweetalert'
@@ -10,10 +9,6 @@ const ProfileEditor = ({ showModal, setShowModal, id }) => {
     const [name, setName] = useState('')
     const username = useRef()
     const checked = useRef()
-    // const { name } = id
-    // if (id) {
-    //     console.log(Object.entries(id));
-    // }
     if (id) {
         if (id.check.current === true) {
             checked.current = true

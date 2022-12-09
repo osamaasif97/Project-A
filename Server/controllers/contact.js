@@ -10,6 +10,9 @@ const contactList = async (req, res) => {
         const email = decoded.email
         const user = await User.findOne({ email: email })
         const contacts = await Contacts.find({ createdBy: user._id })
+        await User.findByIdAndUpdate(user._id, {
+            contactCount: contacts.length
+        })
         res.json({ status: 'ok', data: contacts })
 
     } catch (error) {
@@ -142,10 +145,32 @@ const updateContact = async (req, res) => {
     }
 }
 
+const allContacts = async (req, res) => {
+    const { id } = req.query
+    try {
+        const contacts = await Contacts.find({ createdBy: id })
+        result = await User.findByIdAndUpdate(id, {
+            contactCount: contacts.length
+        })
+        res.status(200).json({ message: 'ok' })
+    } catch (error) {
+        res.status(400).json({ error: error })
+    }
+
+    // try {
+    //     const result = await Contacts.find({ createdBy: id })
+    //     res.status(200).json({ message: 'ok', count: result.length, id: id })
+    // } catch (error) {
+    //     console.log(error);
+    //     res.status(400).json({ error: error })
+    // }
+}
+
 module.exports = {
     contactList,
     createContact,
     deleteContact,
     updateContact,
-    bulkDelete
+    bulkDelete,
+    allContacts
 }

@@ -231,22 +231,24 @@ const Home = () => {
                 <FontAwesomeIcon icon={faSignOut} />
             </b>
         </div>
-        <div style={{ padding: "20px" }}>
-            <h1 >Welcome {user.name}</h1>
-            {data1 !== undefined ?
-                data1.length !== 0 ?
-                    <div >
-                        <h3>Total contacts: {data1.length}</h3>
-                        <Datatable className="listx"
-                            data={data1}
-                        />
-                        <DeleteModal showModal={showModal === "delete"} setShowModal={setShowModal} id={ModalData} />
-                    </div> : <div>
-                        No contacts....
-                    </div>
-                : null
-            }
-        </div>
+        {user ?
+            <div style={{ padding: "20px" }}>
+                <h1 >Welcome {user.name}</h1>
+                {data1 !== undefined ?
+                    data1.length !== 0 ?
+                        <div >
+                            <h3>Total contacts: {data1.length}</h3>
+                            <Datatable className="listx"
+                                data={data1}
+                            />
+                            <DeleteModal showModal={showModal === "delete"} setShowModal={setShowModal} id={ModalData} />
+                        </div> : <div>
+                            No contacts....
+                        </div>
+                    : null
+                }
+            </div>
+            : <div></div>}
     </>
 }
 

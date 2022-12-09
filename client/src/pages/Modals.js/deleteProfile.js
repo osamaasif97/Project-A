@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
 
 const AdminProfileDelete = ({ showModal }) => {
-    console.log('here');
     const [type, setType] = useState('password')
     const [icon, setIcon] = useState(faEyeSlash)
     const [password, setPassword] = useState('')

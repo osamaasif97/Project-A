@@ -20,7 +20,7 @@ const editProfile = () => {
     const user1 = jwt.decode(token)
 
     useEffect(() => {
-        Authenticator(user1)
+        Authenticator(token)
     })
     if (!user1) {
         sessionStorage.removeItem('token')

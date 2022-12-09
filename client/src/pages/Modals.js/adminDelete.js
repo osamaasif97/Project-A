@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import MasterProfileDelete from '../functions/MasterProfileDelete'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 
 const adminDelete = ({ showModal, setShowModal, id }) => {
     return <>
