@@ -21,7 +21,6 @@ async function MasterProfileDelete(id) {
             button: "Continue",
         }).then(() => { window.location.href = '/masterAdmin' })
     }
-
     if (result.error) {
         // setTimeout(function () {
         //     window.location.href = "/masterAdmin"

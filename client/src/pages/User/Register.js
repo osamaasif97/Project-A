@@ -50,7 +50,7 @@ function App() {
         button: "Continue",
       }).then(() => { history.push('/login') })
     }
-    else {
+    else if (data.status === 'error') {
       swal({
         title: "Error",
         text: data.error,

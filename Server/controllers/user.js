@@ -2,6 +2,7 @@ const User = require('../model/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
+const Contacts = require('../model/contactBook')
 
 const register = async (req, res) => {
     const { email, name, password: plainTextPassword } = req.body
@@ -232,13 +233,18 @@ const MasterProfileDelete = async (req, res) => {
         const { id } = user
         const data = await User.findById(id)
         if (data.power >= 1) {
+            const contact = await Contacts.find({ createdBy: profileID })
+            for (let i = 0; i < contact.length; i++) {
+                await Contacts.findOneAndDelete({ createdBy: profileID })
+            }
             const result = await User.findByIdAndDelete(profileID)
             if (result) {
                 res.status(200).json({ status: 'ok', message: 'User Deleted!' })
             }
         }
     } catch (error) {
-        console.log(error);
+
+        console.log('ERRor', error);
     }
 }
 
